@@ -79,7 +79,7 @@ public class ArrayDeque<T> {
         }
         int useratio = size / items.length;
         if (useratio < 0.25) {
-            resize(size / 2);
+            resize(items.length / 2);
         }
         tail = (tail - 1 + items.length) % items.length;
         T returnItem = items[tail];
