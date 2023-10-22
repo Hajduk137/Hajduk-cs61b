@@ -84,7 +84,7 @@ public class LinkedListDequeTest {
     /* Check if you can create LinkedListDeques with different parameterized types*/
     public void multipleParamTest() {
 
-        /*
+
         LinkedListDeque<String>  lld1 = new LinkedListDeque<String>();
         LinkedListDeque<Double>  lld2 = new LinkedListDeque<Double>();
         LinkedListDeque<Boolean> lld3 = new LinkedListDeque<Boolean>();
@@ -96,7 +96,7 @@ public class LinkedListDequeTest {
         String s = lld1.removeFirst();
         double d = lld2.removeFirst();
         boolean b = lld3.removeFirst();
-        */
+
     }
 
     @Test
@@ -135,5 +135,29 @@ public class LinkedListDequeTest {
         }
 
 
+    }
+
+    @Test
+    public void iteratorTest() {
+        LinkedListDeque<Integer> lld1 = new LinkedListDeque<>();
+        for (int i = 0; i < 5; i ++) {
+            lld1.addLast(i);
+        }
+        int expectValue = 0;
+        for (int s : lld1) {
+            assertEquals(expectValue, s);
+            expectValue ++;
+        }
+
+    }
+
+    @Test
+    public void equalTest() {
+        LinkedListDeque<Integer> L = new LinkedListDeque<>();
+        LinkedListDeque<Integer> BL = new LinkedListDeque<>();
+        L.addLast(5);
+        BL.addFirst(4);
+        BL.addLast(5);
+        assertFalse(L.equals(BL));
     }
 }

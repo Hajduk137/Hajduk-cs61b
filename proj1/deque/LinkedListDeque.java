@@ -1,6 +1,8 @@
 package deque;
 
-public class LinkedListDeque<T> {
+import java.util.Iterator;
+
+public class LinkedListDeque<T> implements Deque<T> {
     private class Node {
         public Node prev;
         public T item;
@@ -41,14 +43,7 @@ public class LinkedListDeque<T> {
         this.size += 1;
     }
 
-    public boolean isEmpty() {
-        if (this.size == 0) {
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
+
 
     public int size() {
         return this.size;
@@ -122,5 +117,51 @@ public class LinkedListDeque<T> {
 
             current = current.next;
             return getRecursive(index - 1);
+    }
+    private class ListIterator implements Iterator<T>{
+        private Node curr;
+        public ListIterator() {
+            curr = sentinel.next;
+        }
+        @Override
+        public boolean hasNext() {
+            return curr.next != sentinel;
+        }
+
+        @Override
+        public T next() {
+            T returnItem = curr.item;
+            curr = curr.next;
+            return returnItem;
+        }
+    }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new ListIterator();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (! (o instanceof  LinkedListDeque oas)) {
+            return false;
+        }
+        if (oas.size() != this.size()){
+            return false;
+        }
+        Iterator<T> oasIterator = oas.iterator();
+        Iterator<T> thisIterator = this.iterator();
+
+        while (oasIterator.hasNext() && thisIterator.hasNext()) {
+            T item1 = oasIterator.next();
+            T item2 = thisIterator.next();
+            if (!item1.equals(item2)) {
+                return false;
+            }
+        }
+        return !oasIterator.hasNext() && !thisIterator.hasNext();
     }
 }
