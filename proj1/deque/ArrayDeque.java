@@ -126,9 +126,10 @@ public class ArrayDeque<T>  implements  Deque<T>{
         if (this == o) {
             return true;
         }
-        if (! (o instanceof  ArrayDeque oas)) {
+        if (! (o instanceof  ArrayDeque)) {
             return false;
         }
+        ArrayDeque<T> oas = (ArrayDeque<T>) o;
         if (oas.size() != this.size()){
             return false;
         }

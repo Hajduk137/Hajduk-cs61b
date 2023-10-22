@@ -146,9 +146,10 @@ public class LinkedListDeque<T> implements Deque<T> {
         if (this == o) {
             return true;
         }
-        if (! (o instanceof  LinkedListDeque oas)) {
+        if (! (o instanceof  LinkedListDeque)) {
             return false;
         }
+        LinkedListDeque<T> oas = (LinkedListDeque<T>) o;
         if (oas.size() != this.size()){
             return false;
         }
