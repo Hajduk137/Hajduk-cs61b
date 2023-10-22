@@ -2,7 +2,7 @@ package deque;
 
 import java.util.Iterator;
 
-public class ArrayDeque<T>  implements  Deque<T>{
+public class ArrayDeque<T>  implements Iterable<T> , Deque<T>{
     private T[] items;
     private int head = 0;
     private int tail = 0;
@@ -23,6 +23,7 @@ public class ArrayDeque<T>  implements  Deque<T>{
         tail = size % items.length;
        }
 
+       @Override
     public void addFirst(T item){
         if (size == items.length) {
             resize(items.length * 2);
@@ -34,6 +35,7 @@ public class ArrayDeque<T>  implements  Deque<T>{
 
     }
 
+    @Override
     public void addLast(T item){
         if (size == items.length) {
             resize(items.length * 2);
@@ -45,10 +47,12 @@ public class ArrayDeque<T>  implements  Deque<T>{
     }
 
 
+    @Override
     public int size(){
         return size;
     }
 
+    @Override
     public void printDeque(){
         for (T item : this) {
             System.out.print(item + " ");
@@ -57,6 +61,7 @@ public class ArrayDeque<T>  implements  Deque<T>{
 
     }
 
+    @Override
     public T removeFirst(){
         if (this.isEmpty()) {
             return null;
@@ -74,6 +79,7 @@ public class ArrayDeque<T>  implements  Deque<T>{
         return returnItem;
     }
 
+    @Override
     public T removeLast(){
         if (this.isEmpty()) {
             return null;
@@ -90,6 +96,7 @@ public class ArrayDeque<T>  implements  Deque<T>{
         return returnItem;
     }
 
+    @Override
     public T get(int index){
         if (index > size) {
             return null;
@@ -98,7 +105,6 @@ public class ArrayDeque<T>  implements  Deque<T>{
             return items[(head + index) % items.length];
         }
     }
-
     private class ArrayIterator  implements Iterator<T>{
         private int wizPos;
         public ArrayIterator() {

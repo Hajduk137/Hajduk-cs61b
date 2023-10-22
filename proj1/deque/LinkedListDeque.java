@@ -1,8 +1,10 @@
 package deque;
 
+import org.junit.Test;
+
 import java.util.Iterator;
 
-public class LinkedListDeque<T> implements Deque<T> {
+public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
     private class Node {
         public Node prev;
         public T item;
@@ -28,12 +30,14 @@ public class LinkedListDeque<T> implements Deque<T> {
 
 
 
+    @Override
     public void addFirst(T item) {
         sentinel.next = new Node(item, sentinel.next, sentinel);
         sentinel.next.next.prev = sentinel.next;
         this.size += 1;
     }
 
+    @Override
     public void addLast(T item) {
         Node newNode = new Node(item, null, null);
         newNode.next = sentinel;
@@ -45,10 +49,12 @@ public class LinkedListDeque<T> implements Deque<T> {
 
 
 
+    @Override
     public int size() {
         return this.size;
     }
 
+    @Override
     public void printDeque() {
         Node current = sentinel.next;
         while (current != sentinel) {
@@ -58,6 +64,7 @@ public class LinkedListDeque<T> implements Deque<T> {
         System.out.println();
     }
 
+    @Override
     public T removeFirst() {
         if (sentinel.next != sentinel) {
             Node returnNode = sentinel.next;
@@ -74,6 +81,7 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     }
 
+    @Override
     public T removeLast() {
         if (sentinel.prev != sentinel) {
             Node removeNode = sentinel.prev;
@@ -90,6 +98,7 @@ public class LinkedListDeque<T> implements Deque<T> {
 
     }
 
+    @Override
     public T get(int index) {
         Node currentNode = sentinel.next;
         int currentIndex = 0;
