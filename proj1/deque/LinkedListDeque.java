@@ -1,14 +1,12 @@
 package deque;
 
-import org.junit.Test;
-
 import java.util.Iterator;
 
 public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
     private class Node {
-        public Node prev;
-        public T item;
-        public Node next;
+        private Node prev;
+        private T item;
+        private Node next;
         public Node(T i, Node n, Node p) {
             this.item = i;
             this.next = n;
@@ -74,8 +72,7 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
             returnNode.prev = null;
             this.size -= 1;
             return returnNode.item;
-        }
-        else {
+        } else {
             return null;
         }
 
@@ -91,8 +88,7 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
             removeNode.prev = null;
             this.size -= 1;
             return removeNode.item;
-        }
-        else {
+        } else {
             return null;
         }
 
@@ -116,18 +112,17 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
     }
 
     public T getRecursive(int index) {
-            Node current = sentinel.next;
-            if (index < 0) {
-                return null;
-            }
-            if (index == 0) {
-                return current.item;
-            }
-
-            current = current.next;
-            return getRecursive(index - 1);
+        Node current = sentinel.next;
+        if (index < 0) {
+            return null;
+        }
+        if (index == 0) {
+            return current.item;
+        }
+        current = current.next;
+        return getRecursive(index - 1);
     }
-    private class ListIterator implements Iterator<T>{
+    private class ListIterator implements Iterator<T> {
         private Node curr;
         public ListIterator() {
             curr = sentinel.next;
@@ -155,7 +150,7 @@ public class LinkedListDeque<T> implements Iterable<T>, Deque<T> {
         if (this == o) {
             return true;
         }
-        if (! (o instanceof  LinkedListDeque)) {
+        if (!(o instanceof  LinkedListDeque)) {
             return false;
         }
         LinkedListDeque<T> oas = (LinkedListDeque<T>) o;
